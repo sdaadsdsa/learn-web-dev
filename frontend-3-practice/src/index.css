@@ -1,15 +1,464 @@
-/* Глобальные стили.
-   Минимум: сброс отступов и шрифт по умолчанию.
-   Остальное — стили своей страницы — добавляем сами
-   (в этом файле или в отдельных .css для компонентов). */
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html, body, #root {
+  height: 100%;
+}
+
+:root {
+  --color-dark: #2C3E50;
+  --color-light-bg: #F6F6F6;
+  --color-gray-border: #D0D5D5;
+  --color-gray-text: #808585;
+  --color-gray-medium: #A0A5A5;
+  --color-white: #FFFFFF;
+}
+
 body {
-  min-height: 100vh;
-  font-family: sans-serif;
+  font-family: 'Arial', sans-serif;
+  background-color: var(--color-light-bg);
+  color: var(--color-dark);
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
+.header {
+  background-color: var(--color-white);
+  padding: 20px 0;
+  border-bottom: 1px solid var(--color-gray-border);
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo-wrap {
+  background-color: rgba(204, 204, 204, 0.1);
+  border-radius: 20px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header__logo {
+  height: 140px;
+  width: auto;
+}
+
+.nav__list {
+  display: flex;
+  list-style: none;
+  gap: 0;
+  border-radius: 30px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #D5D5D5 36%, #F6F6F6 81%);
+}
+
+.nav__link {
+  text-decoration: none;
+  color: #000000;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 12px 25px;
+  transition: background 0.3s;
+  display: inline-block;
+  text-align: center;
+  background: transparent;
+}
+
+.nav__link:hover {
+  background: rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+
+.progress-wrapper {
+  width: 100%;
+  border-bottom: 1px solid var(--color-gray-border);
+  padding-bottom: 30px;
+}
+
+.progress {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 0 0;
+}
+
+.progress__step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress__number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--color-gray-border);
+  color: var(--color-white);
+  font-size: 14px;
+}
+
+.progress__step--done .progress__number {
+  background-color: #7F7F7F;
+}
+
+.progress__step--active .progress__number {
+  background-color: var(--color-dark);
+}
+
+.progress__label {
+  font-size: 14px;
+  color: var(--color-gray-text);
+}
+
+.progress__step--active .progress__label {
+  color: var(--color-dark);
+  font-weight: bold;
+}
+
+.progress__line {
+  flex-grow: 1;
+  height: 3px;
+  background-color: var(--color-gray-border);
+  margin: 0 8px;
+}
+
+.progress__line--active {
+  background-color: var(--color-dark);
+}
+
+.progress__dash {
+  width: 20px;
+  height: 1px;
+  background-color: #D5D5D5;
+  flex-shrink: 0;
+  margin-left: 12px;
+  margin-right: 15px;
+}
+
+.progress__step:last-of-type + .progress__dash {
+  height: 2px;
+  margin-left: 20px;
+  margin-right: 0;
+}
+
+.main__title {
+  font-size: 28px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: var(--color-dark);
+  font-weight: bold;
+}
+
+.main__subtitle {
+  font-size: 18px;
+  color: var(--color-dark);
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.booking {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.calendar,
+.time-slots {
+  background-color: var(--color-white);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  padding: 30px;
+}
+
+.calendar {
+  flex: 1;
+}
+
+.calendar__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.calendar__month {
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--color-dark);
+}
+
+.calendar__controls {
+  display: flex;
+  gap: 10px;
+}
+
+.calendar__btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--color-light-bg);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s;
+  position: relative;
+  padding: 0;
+}
+
+.calendar__btn:hover {
+  background-color: var(--color-gray-border);
+}
+
+.calendar__btn::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 2px solid #333333;
+  border-top: none;
+  border-right: none;
+  display: block;
+  transition: border-color 0.3s;
+}
+
+.calendar__btn--prev::before {
+  transform: rotate(45deg);
+  margin-left: 4px;
+}
+
+.calendar__btn--next::before {
+  transform: rotate(-135deg);
+  margin-right: 4px;
+}
+
+.calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  text-align: center;
+}
+
+.calendar__day-name {
+  font-size: 14px;
+  color: var(--color-dark);
+  font-weight: bold;
+  padding-bottom: 12px;
+}
+
+.calendar__day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--color-dark);
+  background-color: var(--color-light-bg);
+  transition: background 0.3s, color 0.3s;
+}
+
+.calendar__day:hover {
+  background-color: var(--color-gray-border);
+}
+
+.calendar__day--empty {
+  color: var(--color-gray-border);
+  cursor: default;
+  background: none;
+}
+
+.calendar__day--empty:hover {
+  background: none;
+}
+
+.calendar__day--active {
+  background-color: var(--color-white);
+  border: 2px solid var(--color-dark);
+  font-weight: bold;
+}
+
+.calendar__day--active:hover {
+  background-color: var(--color-white);
+  color: var(--color-dark);
+}
+
+/* --- Время --- */
+.time-slots {
+  flex: 1;
+}
+
+.time-slots__title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: var(--color-dark);
+}
+
+.time-slots__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.time-slot {
+  padding: 15px;
+  border: 1px solid #F0F1F0;
+  border-radius: 10px;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s;
+  color: var(--color-dark);
+  font-family: inherit;
+}
+
+.time-slot:hover {
+  border-color: var(--color-dark);
+}
+
+.time-slot--busy {
+  color: var(--color-gray-border);
+  cursor: not-allowed;
+  border: 1px solid #D5D5D5;
+  background-color: var(--color-light-bg);
+}
+
+.time-slot--busy span {
+  display: block;
+  font-size: 10px;
+  color: var(--color-gray-border);
+}
+
+.time-slot--active {
+  border-color: var(--color-dark);
+  border-width: 2px;
+}
+
+/* --- Итог --- */
+.summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #EBEBEB;
+  border-radius: 16px;
+  padding: 30px 40px;
+}
+
+.summary__info {
+  text-align: center;
+}
+
+.summary__label {
+  font-size: 16px;
+  color: #3D4243;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.summary__value {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--color-dark);
+}
+
+.summary__btn {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  border: none;
+  padding: 15px 40px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-family: inherit;
+}
+
+.summary__btn:hover {
+  background-color: #1a252f;
+}
+
+/* --- Подвал --- */
+.footer {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  padding: 40px 0 10px;
+  margin-top: 60px;
+}
+
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 0;
+}
+
+.footer__logo img {
+  height: 170px;
+  width: auto;
+}
+
+.footer h3 {
+  font-size: 14px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-white);
+  font-weight: bold;
+}
+
+.footer p {
+  font-size: 14px;
+  color: var(--color-gray-border);
+  margin-bottom: 8px;
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding-top: 0;
+  font-size: 12px;
+  color: var(--color-gray-medium);
+  flex-wrap: wrap;
+}
+
+.footer__bottom p {
+  margin: 0;
+  color: var(--color-gray-medium);
+  display: inline;
+}
+
+.footer__bottom a {
+  color: var(--color-gray-medium);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  display: inline-block;
+}
+
+.footer__bottom a:hover {
+  color: var(--color-white);
+  text-decoration: underline;
 }
